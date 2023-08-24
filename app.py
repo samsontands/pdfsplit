@@ -3,10 +3,6 @@ import PyPDF2
 import streamlit as st
 import io
 
-# Initialize the counter in session state
-if 'split_counter' not in st.session_state:
-    st.session_state.split_counter = 0
-
 def split_pdf(pdf_file, start_page, end_page):
     pdf_reader = PyPDF2.PdfReader(pdf_file)
     num_pages_total = len(pdf_reader.pages)
@@ -21,7 +17,6 @@ def split_pdf(pdf_file, start_page, end_page):
     output_stream = io.BytesIO()
     pdf_writer.write(output_stream)
     output_stream.seek(0)  # Reset stream position to the beginning
-    st.session_state.split_counter += 1  # Increment the counter
     return output_stream.read()
 
 # Streamlit app
@@ -50,6 +45,3 @@ if input_file is not None:
 
 # Display instructions
 st.write("Upload a PDF file, specify starting and ending page numbers, and click 'Split PDF'.")
-
-# Display the counter
-st.write(f"Split operations completed: {st.session_state.split_counter}")
