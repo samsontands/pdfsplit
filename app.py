@@ -27,9 +27,6 @@ def split_pdf(pdf_file, start_page, end_page):
 # Streamlit app
 st.title("PDF Splitter")
 
-# Display the counter
-st.write(f"Split operations completed: {st.session_state.split_counter}")
-
 # Create the file uploader
 input_file = st.file_uploader("Upload a PDF file", type=["pdf"])
 
@@ -53,3 +50,6 @@ if input_file is not None:
 
 # Display instructions
 st.write("Upload a PDF file, specify starting and ending page numbers, and click 'Split PDF'.")
+
+# Display the counter
+st.write(f"Split operations completed: {st.session_state.split_counter}")
